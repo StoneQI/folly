@@ -1,4 +1,5 @@
 {
     "noteSync.enableNoteSync": true,
-    "pasteImage.basePath": "${currentFileDir}/images"
+    "pasteImage.basePath": "${currentFileDir}/images",
+    "pasteImage.path": "${currentFileDir}/images"
 }
