@@ -701,6 +701,8 @@ inline void fbstring_core<Char>::initSmall(
       fbstring_detail::podCopy(data, data + size, small_);
     }
   }
+
+  // 设置 size  category 和\0
   setSmallSize(size);
 }
 
