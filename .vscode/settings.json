@@ -2,5 +2,5 @@
     "noteSync.enableNoteSync": true,
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.path": "${currentFileDir}/images",
-    "pasteImage.insertPattern": "images/${imageSyntaxPrefix}${imageFilePath}${imageSyntaxSuffix}"
+    "pasteImage.insertPattern": "${imageSyntaxPrefix}./images/${imageFilePath}${imageSyntaxSuffix}"
 }
