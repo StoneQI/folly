@@ -674,7 +674,9 @@ inline void fbstring_core<Char>::initSmall(
 // compiling with ASan.
 #ifndef FOLLY_SANITIZE_ADDRESS
   // 计算data是否内存对齐
-  // sizeof(size_t) - 1
+  // alignment & (alignment - 1)  检查alignment是否是2的N次方
+  // sizeof(size_t) - 1 。例如 8-1: 0100-1 ：0011
+  // data & sizeof(size_t) - 1 检测data 是否是8的倍数，也就是是否内存关于size_t对齐
   if ((reinterpret_cast<size_t>(data) & (sizeof(size_t) - 1)) == 0) {
     const size_t byteSize = size * sizeof(Char);
     constexpr size_t wordWidth = sizeof(size_t);
