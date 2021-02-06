@@ -673,11 +673,12 @@ inline void fbstring_core<Char>::initSmall(
 // the string, and makes ASan unhappy, so we disable it when
 // compiling with ASan.
 #ifndef FOLLY_SANITIZE_ADDRESS
+  // 计算data是否内存对齐
   if ((reinterpret_cast<size_t>(data) & (sizeof(size_t) - 1)) == 0) {
     const size_t byteSize = size * sizeof(Char);
     constexpr size_t wordWidth = sizeof(size_t);
+    // 统计传入字符数量，按size_t类型复制
     switch ((byteSize + wordWidth - 1) / wordWidth) { // Number of words.
-    
       case 3:
         ml_.capacity_ = reinterpret_cast<const size_t*>(data)[2];
         FOLLY_FALLTHROUGH;
