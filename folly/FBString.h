@@ -674,6 +674,7 @@ inline void fbstring_core<Char>::initSmall(
 // compiling with ASan.
 #ifndef FOLLY_SANITIZE_ADDRESS
   // 计算data是否内存对齐
+  // sizeof(size_t) - 1
   if ((reinterpret_cast<size_t>(data) & (sizeof(size_t) - 1)) == 0) {
     const size_t byteSize = size * sizeof(Char);
     constexpr size_t wordWidth = sizeof(size_t);
