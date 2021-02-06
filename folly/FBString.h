@@ -702,7 +702,7 @@ inline void fbstring_core<Char>::initSmall(
     }
   }
 
-  // 设置 size  category 和\0
+  // 设置 size  category 和\0。 capacity没有空间设置。默认为 maxSmallSize
   setSmallSize(size);
 }
 
