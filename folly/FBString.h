@@ -677,6 +677,7 @@ inline void fbstring_core<Char>::initSmall(
     const size_t byteSize = size * sizeof(Char);
     constexpr size_t wordWidth = sizeof(size_t);
     switch ((byteSize + wordWidth - 1) / wordWidth) { // Number of words.
+    
       case 3:
         ml_.capacity_ = reinterpret_cast<const size_t*>(data)[2];
         FOLLY_FALLTHROUGH;
