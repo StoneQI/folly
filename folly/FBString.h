@@ -557,6 +557,7 @@ class fbstring_core {
     MediumLarge ml_;
   };
 
+  // constexpr可以用来修饰变量、函数、构造函数。一旦以上任何元素被constexpr修饰，那么等于说是告诉编译器 “请大胆地将我看成编译时就能得出常量值的表达式去优化我”
   constexpr static size_t lastChar = sizeof(MediumLarge) - 1;
   constexpr static size_t maxSmallSize = lastChar / sizeof(Char);
   constexpr static size_t maxMediumSize = 254 / sizeof(Char);
@@ -703,6 +704,8 @@ inline void fbstring_core<Char>::initSmall(
   }
 
   // 设置 size  category 和\0。 capacity没有空间设置。默认为 maxSmallSize
+  // maxSmallSize为多申明的也会占用空间？？ 实际 maxSmallSize 申请为常量，编译时直接嵌入代码中
+  // 因此并不会占用多余的空间
   setSmallSize(size);
 }
 

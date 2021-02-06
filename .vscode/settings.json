@@ -2,5 +2,11 @@
     "noteSync.enableNoteSync": true,
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.path": "${currentFileDir}/images",
-    "pasteImage.insertPattern": "${imageSyntaxPrefix}./images/${imageFilePath}${imageSyntaxSuffix}"
+    "pasteImage.insertPattern": "${imageSyntaxPrefix}./images/${imageFilePath}${imageSyntaxSuffix}",
+    "noteSync.delayTime": 100000,
+    "[markdown]": {
+        "editor.quickSuggestions": true
+      },
+      "files.autoSave": "afterDelay", //自动保存文件，防止忘记保存文件
+    "files.autoSaveDelay": 10000, //延迟保存文件10s
 }
