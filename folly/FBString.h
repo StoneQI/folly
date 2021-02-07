@@ -196,7 +196,7 @@ class fbstring_core_model {
   // Expands the string by delta characters (i.e. after this call
   // size() will report the old size() plus delta) but without
   // initializing the expanded region. 
-  // 
+  //  expanded region 未初始化，可能会产生  zero-terminated
   // The expanded region is
   // zero-terminated. Returns a pointer to the memory to be
   // initialized (the beginning of the expanded portion). The caller
@@ -207,19 +207,26 @@ class fbstring_core_model {
   Char* expandNoinit(size_t delta, bool expGrowth);
 
 
+  // 添加字符
   // Expands the string by one character and sets the last character
   // to c.
   void push_back(Char c);
   // Returns the string's size.
+
+  // 返回size
   size_t size() const;
   // Returns the string's capacity, i.e. maximum size that the string
   // can grow to without reallocation. Note that for reference counted
   // strings that's technically a lie - even assigning characters
   // within the existing size would cause a reallocation.
   size_t capacity() const;
+
+  // 返回 是否share
   // Returns true if the data underlying the string is actually shared
   // across multiple strings (in a refcounted fashion).
   bool isShared() const;
+
+  
   // Makes sure that at least minCapacity characters are available for
   // the string without reallocation. For reference-counted strings,
   // it should fork the data even if minCapacity < size().
