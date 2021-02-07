@@ -192,10 +192,12 @@ class fbstring_core_model {
   // size().
   void shrink(size_t delta);
 
-  // 扩展字符串
+  // 扩展字符串 size() + delta
   // Expands the string by delta characters (i.e. after this call
   // size() will report the old size() plus delta) but without
-  // initializing the expanded region. The expanded region is
+  // initializing the expanded region. 
+  // 
+  // The expanded region is
   // zero-terminated. Returns a pointer to the memory to be
   // initialized (the beginning of the expanded portion). The caller
   // is expected to fill the expanded area appropriately.
