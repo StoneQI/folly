@@ -156,11 +156,16 @@ template <class Char>
 class fbstring_core_model {
  public:
   fbstring_core_model();
+
+  // 拷贝构造函数
   fbstring_core_model(const fbstring_core_model &);
+  // 复制构造函数
   fbstring_core_model& operator=(const fbstring_core_model &) = delete;
   ~fbstring_core_model();
+
+
   // Returns a pointer to string's buffer (currently only contiguous
-  // strings are supported). The pointer is guaranteed to be valid
+  // strings(连续字符串) are supported ). The pointer is guaranteed to be valid
   // until the next call to a non-const member function.
   const Char * data() const;
   // Much like data(), except the string is prepared to support
