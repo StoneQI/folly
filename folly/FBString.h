@@ -429,6 +429,7 @@ class fbstring_core {
       // We can save a couple instructions, because the category is
       // small iff the last char, as unsigned, is <= maxSmallSize.
       typedef typename std::make_unsigned<Char>::type UChar;
+      
       auto maybeSmallSize = size_t(maxSmallSize) -
           size_t(static_cast<UChar>(small_[maxSmallSize]));
       // With this syntax, GCC and Clang generate a CMOV instead of a branch.
@@ -594,8 +595,15 @@ class fbstring_core {
   constexpr static size_t maxSmallSize = lastChar / sizeof(Char);
   // 设置中等字符串长度
   constexpr static size_t maxMediumSize = 254 / sizeof(Char);
+
+  // 大小端决定 category 提取
   constexpr static uint8_t categoryExtractMask = kIsLittleEndian ? 0xC0 : 0x3;
+
+  //  kCategoryShift 偏移 N-1个字节 （字节数）*8
   constexpr static size_t kCategoryShift = (sizeof(size_t) - 1) * 8;
+
+  // 大小端决定 capacity 提取 小端把categoryExtractMask偏移到第一个字节
+  // 大端不变
   constexpr static size_t capacityExtractMask = kIsLittleEndian
       ? ~(size_t(categoryExtractMask) << kCategoryShift)
       : 0x0 /* unused */;
