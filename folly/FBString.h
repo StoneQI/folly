@@ -165,15 +165,20 @@ class fbstring_core_model {
 
 
   // Returns a pointer to string's buffer (currently only contiguous
-  // strings(连续字符串) are supported ). The pointer is guaranteed to be valid
+  // strings(连续字符串) are supported ).  返回指针指向的字符串内容无法改变
+  // 指针有效知道下一次 调用 non-const方法
+  // The pointer is guaranteed to be valid
   // until the next call to a non-const member function.
   const Char * data() const;
+
+  // 返回指针指向的字符串内容可以改变
   // Much like data(), except the string is prepared to support
   // character-level changes. This call is a signal for
   // e.g. reference-counted implementation to fork the data. The
   // pointer is guaranteed to be valid until the next call to a
   // non-const member function.
   Char* mutableData();
+
   // Returns a pointer to string's buffer and guarantees that a
   // readable '\0' lies right after the buffer. The pointer is
   // guaranteed to be valid until the next call to a non-const member
