@@ -425,15 +425,18 @@ class fbstring_core {
 
   size_t size() const {
     size_t ret = ml_.size_;
+    // 编译期间会进行优化
     if /* constexpr */ (kIsLittleEndian) {
       // We can save a couple instructions, because the category is
       // small iff the last char, as unsigned, is <= maxSmallSize.
       typedef typename std::make_unsigned<Char>::type UChar;
 
       // 小端 maxSmallSize- small_[maxSmallSize] 得到值 >=0说明为 Small
-      // 
+      // <0 说明 size大于 maxSmallSize
       auto maybeSmallSize = size_t(maxSmallSize) -
           size_t(static_cast<UChar>(small_[maxSmallSize]));
+
+      // 使用条件运算符，会生成CMOV指令，没有分支预测。条件指令必须简单
       // With this syntax, GCC and Clang generate a CMOV instead of a branch.
       ret = (static_cast<ssize_t>(maybeSmallSize) >= 0) ? maybeSmallSize : ret;
     } else {
