@@ -257,7 +257,8 @@ class fbstring_core_model {
  *   `maxSmallSize - size`, so this quantity must be subtracted from
  *   `maxSmallSize` to compute the `size` of the string (see `smallSize()`).
  *   This scheme ensures that when `size == `maxSmallSize`, the last byte in the
- *   storage is \0. This way, storage will be a null-terminated sequence of
+ *   storage is \0. This way, storage will be a null-terminated(是具有代码 0、空终止符、*
+ *   空字符NUL的 ASCII 字符) sequence of
  *   bytes, even if all 23 bytes of data are used on a 64-bit architecture.
  *   This enables `c_str()` and `data()` to simply return a pointer to the
  *   storage.
