@@ -587,6 +587,21 @@ class fbstring_core {
     }
   };
 
+
+  // 数据结构体， 为small时为 sizeof(MediumLarge) / sizeof(Char)大小的数组
+  // 为medium时 长度为uint8_t bytes_[sizeof(MediumLarge)] ，直接在该地址进行初始化
+  // 为 Large 时 直接读MediumLarge
+  //
+  // 定义了一个匿名的union类型，因此也就只能在X内部使用了，并且此种情况隐含着已经
+  // 在X中定义了一个属于该匿名union类型的对象，因此sizeof(X)==4，并且此种情况最为特殊，可以直接
+  // 通过类X的对象来使用m_nX和pchar，例如X x;x.m_nX=10;x.pchar="Hello World!";
+  // class X{
+  // public:
+  //    union {
+  //      int m_nX;
+  //      char* pchar;
+  //    };
+  // };
   union {
     uint8_t bytes_[sizeof(MediumLarge)]; // For accessing the last byte.
     Char small_[sizeof(MediumLarge) / sizeof(Char)];
