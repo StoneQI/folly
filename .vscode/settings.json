@@ -16,8 +16,9 @@
         "editor.quickSuggestions": true
       },
     "files.autoSave": "afterDelay", //自动保存文件，防止忘记保存文件
-    "files.autoSaveDelay": 10000,
+    "files.autoSaveDelay": 60,
     "files.associations": {
-      "system_error": "cpp"
+      "system_error": "cpp",
+      "xmemory": "cpp"
     }, //延迟保存文件10s
 }
