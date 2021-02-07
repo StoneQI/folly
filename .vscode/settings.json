@@ -3,6 +3,14 @@
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.insertPattern": "${imageSyntaxPrefix}./images/${imageFilePath}${imageSyntaxSuffix}",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/.history":true
+    },
     "noteSync.delayTime": 100000,
     "[markdown]": {
         "editor.quickSuggestions": true

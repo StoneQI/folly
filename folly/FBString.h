@@ -493,6 +493,7 @@ class fbstring_core {
     Char data_[1];
 
     constexpr static size_t getDataOffset() {
+      // __builtin_offsetof 计算偏移量
       return offsetof(RefCounted, data_);
     }
 
