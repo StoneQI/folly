@@ -588,7 +588,9 @@ class fbstring_core {
   };
 
   // constexpr可以用来修饰变量、函数、构造函数。一旦以上任何元素被constexpr修饰，那么等于说是告诉编译器 “请大胆地将我看成编译时就能得出常量值的表达式去优化我”
+  // lastChar sizeof(MediumLarge)-1, 为最后一字节
   constexpr static size_t lastChar = sizeof(MediumLarge) - 1;
+  
   constexpr static size_t maxSmallSize = lastChar / sizeof(Char);
   constexpr static size_t maxMediumSize = 254 / sizeof(Char);
   constexpr static uint8_t categoryExtractMask = kIsLittleEndian ? 0xC0 : 0x3;
