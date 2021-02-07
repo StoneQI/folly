@@ -429,7 +429,9 @@ class fbstring_core {
       // We can save a couple instructions, because the category is
       // small iff the last char, as unsigned, is <= maxSmallSize.
       typedef typename std::make_unsigned<Char>::type UChar;
-      
+
+      // 小端 maxSmallSize- small_[maxSmallSize] 得到值 >=0说明为 Small
+      // 
       auto maybeSmallSize = size_t(maxSmallSize) -
           size_t(static_cast<UChar>(small_[maxSmallSize]));
       // With this syntax, GCC and Clang generate a CMOV instead of a branch.
