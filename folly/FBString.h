@@ -567,6 +567,9 @@ class fbstring_core {
   };
 
   Category category() const {
+
+    // 计算当前 Category
+    // 最后一个字节 bytes_[lastChar]，于 categoryExtractMask做计算，
     // works for both big-endian and little-endian
     return static_cast<Category>(bytes_[lastChar] & categoryExtractMask);
   }
