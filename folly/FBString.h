@@ -226,7 +226,7 @@ class fbstring_core_model {
   // across multiple strings (in a refcounted fashion).
   bool isShared() const;
 
-  
+
   // Makes sure that at least minCapacity characters are available for
   // the string without reallocation. For reference-counted strings,
   // it should fork the data even if minCapacity < size().
@@ -247,7 +247,7 @@ class fbstring_core_model {
  * "large" strings of 255 chars and above are stored in a similar
  * structure as medium arrays, except that the string is
  * reference-counted and copied lazily. the reference count is
- * allocated right before the character array.
+ * allocated right before the character array. 写时复制
  *
  * The discriminator between these three strategies sits in two
  * bits of the rightmost char of the storage:
