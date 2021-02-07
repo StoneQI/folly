@@ -179,14 +179,20 @@ class fbstring_core_model {
   // non-const member function.
   Char* mutableData();
 
+  // 返回C 格式字符串
   // Returns a pointer to string's buffer and guarantees that a
   // readable '\0' lies right after the buffer. The pointer is
   // guaranteed to be valid until the next call to a non-const member
   // function.
   const Char * c_str() const;
+
+  
+  // 根据 delta 缩小字符串
   // Shrinks the string by delta characters. Asserts that delta <=
   // size().
   void shrink(size_t delta);
+
+  // 扩展字符串
   // Expands the string by delta characters (i.e. after this call
   // size() will report the old size() plus delta) but without
   // initializing the expanded region. The expanded region is
@@ -197,6 +203,8 @@ class fbstring_core_model {
   // It is not guaranteed not to reallocate even if size() + delta <
   // capacity(), so all references to the buffer are invalidated.
   Char* expandNoinit(size_t delta, bool expGrowth);
+
+
   // Expands the string by one character and sets the last character
   // to c.
   void push_back(Char c);
