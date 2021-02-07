@@ -53,6 +53,8 @@ FOLLY_GNU_DISABLE_WARNING("-Wshadow")
 
 namespace folly {
 
+
+// 当编译带有Asan选项是时， 总是使用堆分配内存
 // When compiling with ASan, always heap-allocate the string even if
 // it would fit in-situ, so that ASan can detect access to the string
 // buffer after it has been invalidated (destroyed, resized, etc.).
