@@ -18,6 +18,7 @@
     "files.autoSave": "afterDelay", //自动保存文件，防止忘记保存文件
     "files.autoSaveDelay": 10000,
     "files.associations": {
-      "system_error": "cpp"
+      "system_error": "cpp",
+      "memory": "cpp"
     }, //延迟保存文件10s
 }
