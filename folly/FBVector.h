@@ -115,6 +115,8 @@ class fbvector {
 
     // allocation
     // note that 'allocate' and 'deallocate' are inherited from Allocator
+
+    // 分配N个字节的空间
     T* D_allocate(size_type n) {
       if (usingStdAllocator) {
         return static_cast<T*>(checkedMalloc(n * sizeof(T)));
